@@ -9,9 +9,8 @@ RUN \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip vim wget && \
-  apt-get install -y sudo apt-transport-https ca-certificates software-properties-common valgrind jq && \
-  curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" && \
-  unzip awscli-bundle.zip && sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+  apt-get install -y sudo apt-transport-https ca-certificates software-properties-common valgrind jq
+
 RUN \
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
   sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
@@ -22,6 +21,9 @@ RUN \
 RUN \
   curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
   apt-get install -y nodejs
+RUN \
+  curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" && \
+  unzip awscli-bundle.zip && sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 # set hostname
 #RUN sudo hostname myubuntu
 RUN mkdir /Dropbox
